@@ -58,5 +58,5 @@ POST 请求使用 form 的 file upload 进行参数上传，并需要指定上�
 ## 测试地址
 
 - 地址， http://13.124.164.239:3378
-- 对于 GET /sharing-shops API，将会返回测试的构造数据，即每次返回都是一样，具体数据以实际测试为准；
-- 对于 POST /sharing-shops/backend/data/update/ API 仅仅是测试，过程不会影响到上面的 GET API；
+- 对于 GET /api/v1/sharing-shops API，将会返回测试的构造数据，即每次返回都是一样，具体数据以实际测试为准；
+- 对于 POST /api/v1/sharing-shops/backend/data/update/ API 仅仅是测试，过程不会影响到上面的 GET API；
