@@ -11,6 +11,7 @@ logging.basicConfig(level=logging.INFO,
                     datefmt="%Y/%m/%d-%H:%M:%S")
 
 
+Debug = False
 tc = TestCase()
 fake = Faker('zh_CN')
 ALLCLASS = [
@@ -51,7 +52,10 @@ def write_tmp_file():
 
 
 def ws_api(path):
-    uri = 'http://127.0.0.1:3378{}'.format(path)
+    if Debug:
+        uri = 'http://127.0.0.1:3378{}'.format(path)
+    else:
+        uri = 'http://13.124.164.239:3378{}'.format(path)
     return uri
 
 
