@@ -19,8 +19,8 @@ from .handler import ShopRecordHandler, ShopDataUpdateHandler
 def make_app():
     debug = True if options.debug != 'false' else False
     urlmap = [
-        (r"/sharing-shops/?", ShopRecordHandler),
-        (r"/sharing-shops/backend/data/update/?", ShopDataUpdateHandler),
+        (r"/api/v1/sharing-shops/?", ShopRecordHandler),
+        (r"/api/v1/sharing-shops/backend/data/update/?", ShopDataUpdateHandler),
     ]
 
     app = web.Application(urlmap, debug=debug)

@@ -38,7 +38,7 @@ class BaseModel(Model):
 
 class ShopBulkData(BaseModel):
     data = TextField()
-    convert_data = TextField()
+    converted_data = TextField()
     created = DateTimeField(default=datetime.now())
 
     class Meta:
