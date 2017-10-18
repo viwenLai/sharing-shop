@@ -2,3 +2,4 @@ tornado>=4.5.1
 peewee>=2.10.1
 mysqlclient>=1.3.10
 raven
+mwtk_utils
