@@ -15,33 +15,34 @@
 - 返回的数据是 json 对象，格式如下，
 
 ```py
-[
-  {
-    'class': '衣服代购',
-    'sku': [
-      {
-        'number': 1000,
-        'name': '上物东',
-        'url': 'http://xxx.xxx.xx'
-      },
-      {
-        'number': 1000,
-        'name': '上物西',
-        'url': 'http://xxx.xxx.xx'
-        }
-    ]
-  }
-]
+{
+  '衣服代购': [
+    {
+      'number': 1000,
+      'name': '上物东',
+      'url': 'http://xxx.xxx.xx'
+    },
+    {
+      'number': 1001,
+      'name': '上物西',
+      'url': 'http://xxx.xxx.xx'
+    }
+  ],
+  '牛仔裤代购': [
+    {
+      'number': 1002,
+      'name': '上物东',
+      'url': 'http://xxx.xxx.xx'
+    }
+  ],
+}
 ```
 
 ### 基于 POST /sharing-shops/backend/data/update/ API 让管理员将原始数据提交到后端；
 
 页面样式 - 一个单独的用于上传文件的页面，这个可以自由发挥，找一下已有的模板咯；
 
-POST 请求参数，
-```sh
-data: 携带文本数据
-```
+POST 请求使用 form 的 file upload 进行参数上传，并需要指定上传的文件名为 ‘shops.data’；
 
 返回参数，
 ```sh
