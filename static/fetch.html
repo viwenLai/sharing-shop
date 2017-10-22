@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <!-- 引入样式 -->
+  <link rel="stylesheet" href="https://cdn.bootcss.com/element-ui/1.4.6/theme-default/index.css">
+  <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.bootcss.com/ionicons/2.0.1/css/ionicons.min.css">
+  <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <style type="text/css">
+/*.page-component {
+  padding-bottom: 95px;
+  box-sizing: border-box;
+}
+.page-container {
+  padding-top: 55px;
+}*/
+/*.container, .page-container {
+    width: 1140px;
+    padding: 0px 30px;
+    margin: 0px auto;
+}*/
+body {
+  color: #555;
+  font-size: 15px;
+  line-height: 1.7;
+  font-family: 'Helvetica Neue',Helvetica,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',Arial,sans-serif;
+  background-color: #f7fafc !important;
+  background-image: url(https://static.kolast.com/eshop/img/b1.jpg);
+}
+
+.data-box {
+	padding-top: 30px;
+  box-sizing: border-box;
+}
+
+.data-top {
+	overflow: hidden;
+	padding: 0 25px 4px 25px;
+	background: #caa8a8;
+	-moz-border-radius: 4px 4px 0 0; -webkit-border-radius: 4px 4px 0 0; border-radius: 4px 4px 0 0;
+	text-align: left;
+}
+.data-top h3 {
+ 	padding-top: 16px;
+  margin-top: 0;
+  color: #555;
+  text-align: center;
+}
+.data-top p {
+  color: #555;
+  text-align: center;
+}
+
+.data-bottom {
+	padding: 25px 25px 30px 25px;
+	background: #eee;
+	-moz-border-radius: 0 0 4px 4px; -webkit-border-radius: 0 0 4px 4px; border-radius: 0 0 4px 4px;
+	text-align: left;
+}
+
+.el-carousel__item h3 {
+  color: #475669;
+  font-size: 14px;
+  opacity: 0.75;
+  line-height: 200px;
+  margin: 0;
+  text-align: center;
+}
+
+.el-carousel__item:nth-child(2n) {
+  background-color: #99a9bf;
+}
+
+.el-carousel__item:nth-child(2n+1) {
+  background-color: #d3dce6;
+}
+@media only screen and (max-width: 768px) {
+  .col-xs-12 {
+    padding-right: 25px;
+    padding-bottom: 20px;
+    padding-left: 40px;
+  }
+  .data-bottom {
+    padding-top: 80px;
+  }
+
+  #msg {
+    padding-top: 30px;
+  }
+
+  .data-top h3 {
+    font-size: 65px;
+  }
+
+  .data-top p {
+    font-size: 35px;
+  }
+
+  #klassText {
+    font-size: 40px;
+    font-weight: bold;
+  }
+
+  .list-group-item {
+    height: 80px;
+    font-size: 30px;
+  }
+
+  .list-group-item span {
+    font-size: 30px;
+  }
+}
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-6 col-md-offset-3">
+
+        <div class="data-box">
+
+          <div class="data-top">
+              <h3>店铺集</h3>
+              <p>SHaring shop | 专注淘宝店铺分享</p>
+          </div>
+          <div class="data-bottom">
+            <el-carousel :interval="4000" type="card" height="200px">
+              <el-carousel-item v-for="item in carouselData.length" :key="item">
+                <img class="img-responsive" :src="carouselData[item-1]">{{ item }}</img>
+              </el-carousel-item>
+            </el-carousel>
+
+            <div v-for="(item, klass) in shopData" id="msg">
+              <h3 id="klassText">{{ klass }}</h3>
+              <div class="list-group">
+                  <a v-for="item in shopData[klass]" :href="item['url']" class="list-group-item" target="view_window">
+                    <span class="label label-info">{{ item['code'] }}</span>
+                    {{ item['name'] }}
+                  </a>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    <div>
+  </div>
+</body>
+  <!-- <script src="/static/js/plugins/jQuery/jQuery-2.2.0.min.js"></script>
+  <script src="/static/js/plugins/bootstrap/bootstrap.min.js"></script> -->
+  <!-- 先引入 Vue -->
+  <script src="https://cdn.bootcss.com/vue/2.4.4/vue.min.js"></script>
+  <!-- 引入组件库 -->
+  <script src="https://cdn.bootcss.com/element-ui/1.4.6/index.js"></script>
+  <script src="https://cdn.bootcss.com/axios/0.16.2/axios.min.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data: function() {
+        return {
+          url: 'http://13.124.164.239:3378/api/v1/sharing-shops',
+          visible: false,
+          shopData: null,
+          carouselData: [
+            'https://static.kolast.com/eshop/img/1.jpeg',
+            'https://static.kolast.com/eshop/img/2.jpeg',
+            'https://static.kolast.com/eshop/img/3.jpeg',
+            'https://static.kolast.com/eshop/img/4.jpeg',
+            'https://static.kolast.com/eshop/img/5.jpeg',
+            'https://static.kolast.com/eshop/img/6.jpeg'
+          ]
+        }
+      },
+      methods: {
+        // API 相关操作
+        fetchItems () {
+          axios.get(this.url)
+          .then(response => {
+            var data = response.data
+            /* Checking if error object was returned from the server */
+            if (data) {
+              this.shopData = data
+              return
+            }
+          }).catch(error => {
+            this.$notify({
+              title: 'Service 获取失败',
+              message: '出错信息 - ' + String(error),
+              type: 'error'
+            })
+          })
+        },
+      },
+      beforeMount: function () {
+        this.fetchItems()
+      }
+    })
+  </script>
+</html>

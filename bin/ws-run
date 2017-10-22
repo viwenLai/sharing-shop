@@ -1,0 +1,7 @@
+#!/usr/bin/env python3
+
+from westsnow.serve import runserver
+
+
+if __name__ == '__main__':
+    runserver()
