@@ -34,6 +34,10 @@ class ShopRecordHandler(BaseReqHandler):
 
     def get(self):
         obj = ShopBulkData.select().order_by(ShopBulkData.id.desc()).get()
+        self.set_header("Access-Control-Allow-Origin", "*")
+        self.set_header("Access-Control-Allow-Credentials", "true")
+        self.set_header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT,DELETE")
+        self.set_header("Access-Control-Allow-Headers", "authorization, x-user-auth, Content-Type")
         self.write(obj.converted_data)
 
 
@@ -55,6 +59,10 @@ class ShopDataUpdateHandler(BaseReqHandler):
         rv = {
             'result': 'ok'
         }
+        self.set_header("Access-Control-Allow-Origin", "*")
+        self.set_header("Access-Control-Allow-Credentials", "true")
+        self.set_header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT,DELETE")
+        self.set_header("Access-Control-Allow-Headers", "authorization, x-user-auth, Content-Type")
         self.write(rv)
 
     def convert_data(self, data):
