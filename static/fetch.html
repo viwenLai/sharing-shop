@@ -75,6 +75,7 @@ body {
 .el-carousel__item:nth-child(2n+1) {
   background-color: #d3dce6;
 }
+<<<<<<< HEAD
 @media only screen and (max-width: 768px) {
   .col-xs-12 {
     padding-right: 25px;
@@ -111,6 +112,8 @@ body {
     font-size: 30px;
   }
 }
+=======
+>>>>>>> 2ae27a0a3a5b92d8b3bc090c3c6d7aec7a98d5f7
   </style>
 </head>
 <body>
@@ -131,8 +134,13 @@ body {
               </el-carousel-item>
             </el-carousel>
 
+<<<<<<< HEAD
             <div v-for="(item, klass) in shopData" id="msg">
               <h3 id="klassText">{{ klass }}</h3>
+=======
+            <div v-for="(item, klass) in shopData">
+              <h3>{{ klass }}</h3>
+>>>>>>> 2ae27a0a3a5b92d8b3bc090c3c6d7aec7a98d5f7
               <div class="list-group">
                   <a v-for="item in shopData[klass]" :href="item['url']" class="list-group-item" target="view_window">
                     <span class="label label-info">{{ item['code'] }}</span>
