@@ -134,8 +134,6 @@ body {
 
             <div v-for="(item, klass) in shopData" id="msg">
               <h3 id="klassText">{{ klass }}</h3>
-            <div v-for="(item, klass) in shopData">
-              <h3>{{ klass }}</h3>
               <div class="list-group">
                   <a v-for="item in shopData[klass]" :href="item['url']" class="list-group-item" target="view_window">
                     <span class="label label-info">{{ item['code'] }}</span>
@@ -149,7 +147,7 @@ body {
         </div>
 
       </div>
-    <div>
+    </div>
   </div>
 </body>
   <!-- <script src="/static/js/plugins/jQuery/jQuery-2.2.0.min.js"></script>
