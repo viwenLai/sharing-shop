@@ -28,6 +28,7 @@ body {
   font-family: 'Helvetica Neue',Helvetica,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',Arial,sans-serif;
   background-color: #f7fafc !important;
   background-image: url(https://static.kolast.com/eshop/img/b1.jpg);
+  overflow-x: hidden;
 }
 
 .data-box {
@@ -64,7 +65,7 @@ body {
   color: #475669;
   font-size: 14px;
   opacity: 0.75;
-  line-height: 200px;
+  line-height: 20px;
   margin: 0;
   text-align: center;
 }
@@ -81,8 +82,7 @@ body {
   .col-xs-12 {
     padding-right: 25px;
     padding-bottom: 20px;
-    padding-left: 40px;
-    width: 95%;
+    padding-left: 25px;
   }
 
   .data-bottom {
@@ -101,54 +101,64 @@ body {
     font-size: 35px;
   }
 
+  .el-carousel__item img {
+    height: 150px;
+  }
+
+  /*.el-carousel__container {
+    height: 200px!important;
+  }*/
+
   #klassText {
-    font-size: 40px;
+    font-size: 25px;
     font-weight: bold;
   }
 
   .list-group-item {
-    height: 80px;
-    font-size: 30px;
+    height: 60px;
+    font-size: 20px;
   }
 
   .list-group-item span {
-    font-size: 30px;
+    font-size: 20px;
   }
 }
   </style>
 </head>
 <body>
   <div id="app">
-    <div class="row">
-      <div class="col-xs-12 col-sm-12 col-md-6 col-md-offset-3">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-md-offset-3">
 
-        <div class="data-box">
+          <div class="data-box">
 
-          <div class="data-top">
-              <h3>店铺集</h3>
-              <p>SHaring shop | 专注淘宝店铺分享</p>
-          </div>
-          <div class="data-bottom">
-            <el-carousel :interval="4000" type="card" height="200px">
-              <el-carousel-item v-for="item in carouselData.length" :key="item">
-                <img class="img-responsive" :src="carouselData[item-1]">{{ item }}</img>
-              </el-carousel-item>
-            </el-carousel>
+            <div class="data-top">
+                <h3>店铺集</h3>
+                <p>Sharing shop | 专注淘宝店铺分享</p>
+            </div>
+            <div class="data-bottom">
+              <el-carousel :interval="4000" type="card" height="200px">
+                <el-carousel-item v-for="item in carouselData.length" :key="item">
+                  <img class="img-responsive" :src="carouselData[item-1]">{{ item }}</img>
+                </el-carousel-item>
+              </el-carousel>
 
-            <div v-for="(item, klass) in shopData" id="msg">
-              <h3 id="klassText">{{ klass }}</h3>
-              <div class="list-group">
-                  <a v-for="item in shopData[klass]" :href="item['url']" class="list-group-item" target="view_window">
-                    <span class="label label-info">{{ item['code'] }}</span>
-                    {{ item['name'] }}
-                  </a>
+              <div v-for="(item, klass) in shopData" id="msg">
+                <h3 id="klassText">{{ klass }}</h3>
+                <div class="list-group">
+                    <a v-for="item in shopData[klass]" :href="item['url']" class="list-group-item" target="view_window">
+                      <span class="label label-info">{{ item['code'] }}</span>
+                      {{ item['name'] }}
+                    </a>
+                </div>
               </div>
+
             </div>
 
           </div>
 
         </div>
-
       </div>
     </div>
   </div>
