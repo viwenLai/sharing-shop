@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<!-- 上传页面go go go！ -->
+<head>
+  <meta charset="UTF-8">
+  <!-- 自适应设计必备 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- 引入样式 -->
+  <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+  <style>
+  body {
+    font-family: 'Helvetica Neue',Helvetica,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',Arial,sans-serif;
+    background-image: url(https://static.kolast.com/eshop/img/b1.jpg);
+  }
+
+  .upload {
+    text-align: center;
+    height: 500px;
+    background-color: rgba(238,238,238,1);
+    margin-top: 60px;
+    border-radius: 15px;
+  }
+
+  .upload-top {
+    background-color: rgba(202,168,168,1);
+    padding-top: 50px;
+    padding-bottom: 50px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+  }
+
+  .upload-top span {
+    position: relative;
+    right: 5px;
+    top: 5px;
+    font-size: 38px;
+    display: inline;
+  }
+
+  .upload-top h1 {
+    position: relative;
+    left: 5px;
+    display: inline;
+  }
+
+  .upload-bottom {
+    margin-top: 30px;
+  }
+
+  .tiptext {
+    font-size: 15px;
+  }
+
+  .text-field {
+    margin-left: 10px;
+    margin-bottom: 30px;
+    border-radius: 15px;
+    text-align: center;
+    border: 1px solid #F0F8FF;
+    font-size: 15;
+    height: 30px;
+  }
+
+  .upload-btn {
+    border: 1px solid rgba(119,195,226,1);
+    border-radius: 8px;
+    background: rgba(119,195,226,1);
+    height: 64px;
+    width: 295px;
+    margin: 0 auto;
+    font-size: 30px;
+    color: #FFF;
+  }
+
+  /*.input-file {
+    border: 1px solid rgba(119,195,226,1);
+    border-radius: 8px;
+    background: rgba(119,195,226,1);
+    width: 295px;
+    margin: 0 auto;
+  }*/
+
+  .input-file {
+    position: relative;
+    bottom: 65px;
+    padding: 20px 15px;
+    opacity: 0;
+    margin: 0 auto;
+    border-radius: 8px;
+  }
+
+  /*.upload-text {
+    position: relative;
+    font-size: 30px;
+    bottom: 52px;
+    color: #FFF;
+  }*/
+
+  .sub-btn {
+    border: 1px solid rgba(246,146,89,1);
+    border-radius: 8px;
+    background: rgba(246,146,89,1);
+    width: 295px;
+    margin:0 auto;
+  }
+
+  .sub-btn input {
+    border-radius: 8px;
+    height: 64px;
+    width: 295px;
+    background: rgba(0,0,0,0);
+    border-style: none;
+    font-size: 30px;
+    color: #FFF;
+  }
+
+  /*.sub-btn input:hover {
+    border: 1px solid rgba(243,114,41,1);
+    background: rgba(243,114,41,1);
+  }*/
+
+  /*设置媒体查询使页面实现移动端自适应*/
+  @media only screen and (max-width: 768px) {
+    .upload {
+      height: 600px;
+    }
+
+    .upload-top span {
+      font-size: 55px;
+    }
+
+    .upload-top h1 {
+      font-size: 45px;
+      top: -6px;
+    }
+
+    .tiptext {
+      font-size: 20px;
+    }
+
+    .text-field {
+      display: block;
+      margin-top: 30px;
+      margin-right: auto;
+      margin-bottom: 50px;
+      margin-left: auto;
+      width: 180px;
+      height: 35px;
+      font-size: 20px;
+      border: 1px solid #F0F8FF;
+      border-radius: 15px;
+      text-align: center;
+    }
+
+    .upload-btn {
+      width: 190px;
+      font-size: 28px;
+    }
+
+    .input-file {
+      width: 190px;
+    }
+
+    .sub-btn {
+      width: 190px;
+    }
+
+    .sub-btn input {
+      width: 190px;
+      font-size: 28px;
+    }
+  }
+  </style>
+</head>
+
+<body>
+
+  <div id="app" class="container-fluid">
+    <div class="row">
+      <div class="col-xs-12 col-md-8 col-md-offset-2">
+        <div class="upload">
+          <div class="upload-top">
+            <span class="glyphicon glyphicon-upload"></span><h1>上传文件</h1>
+          </div>
+
+          <div class="upload-bottom">
+            <!-- 通过在input file里设置onchange同步更新所选择的文件，并将其文件名更新至input text上 -->
+            <span class="tiptext">选择的文件为: </span><input class="text-field" type="text" id="textfield" value="undefined">
+            <form action="http://13.124.164.239:3378/api/v1/sharing-shops/backend/data/update/" enctype="multipart/form-data" method="post">
+              <!-- 因为type为file的input不能直接改变样式，所以需要upload button来模拟上传框 -->
+              <input class="upload-btn" type="button" name="uploadbtn" value="选择上传文件">
+              <!-- 这个为真正的上传框，使其宽高与上面的button相同，再通过relative的position使其与button完全重合，最后设置capacity：0完成模拟上传框 -->
+              <input class="input-file" type="file" name="file" onchange="document.getElementById('textfield').value=this.value.split('\\')[2];">
+              <!-- 上传咯！ -->
+              <div class="sub-btn">
+                <input type="submit" value="上传文件">
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+  <!-- 引入Vue -->
+  <script src="https://cdn.bootcss.com/vue/2.4.4/vue.min.js"></script>
+  <!-- 引入bootstrap -->
+  <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <script>
+
+  </script>
+
+</html>
