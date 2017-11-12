@@ -195,8 +195,6 @@
               <div class="sub-btn">
                 <input type="submit" value="上传文件">
               </div>
-              <button @click="submitMessage" style="position: relative; top: 30px">上传</button>
-              <p>{{ message }}</p>
             </form>
           </div>
         </div>
@@ -214,7 +212,7 @@
   <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
   <script>
-  new Vue({
+  /*new Vue({
     el: '#app',
     data: {
       message: ''
@@ -233,7 +231,6 @@
 
         reader.onload = (e) => {
           vm.message = e.target.result;
-          /*vm.message = 'Content-Disposition: form-data; name="file"; filename="shops.data"\r\nContent-Type: application/octet-stream\r\n\r\n' + vm.message;*/
         };
         reader.readAsText(file);
       },
@@ -242,15 +239,14 @@
           method: 'post',
           url: 'http://13.124.164.239:3378/api/v1/sharing-shops/backend/data/update/',
           data: this.message,
-          transformRequest: [function(data) {
-            var frontstr = 'Content-Disposition: form-data; name="file"; filename="shops.data"\r\nContent-Type: application/octet-stream\r\n\r\n';
-            data = frontstr + data;
-            return data;
-          }]
+          headers: {
+            'Content-Disposition': 'form-data; name="file"; filename="shops.data"',
+            'Content-Type': 'application/octet-stream'
+          }
         });
       }
     }
-  })
+  })*/
   </script>
 
 </html>
