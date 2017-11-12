@@ -190,11 +190,13 @@
               <!-- 因为type为file的input不能直接改变样式，所以需要upload button来模拟上传框 -->
               <input class="upload-btn" type="button" name="uploadbtn" value="选择上传文件">
               <!-- 这个为真正的上传框，使其宽高与上面的button相同，再通过relative的position使其与button完全重合，最后设置capacity：0完成模拟上传框 -->
-              <input class="input-file" type="file" name="file" onchange="document.getElementById('textfield').value=this.value.split('\\')[2];">
+              <input class="input-file" id="file" type="file" name="file" onchange="document.getElementById('textfield').value=this.value.split('\\')[2];" @change="onFileChange">
               <!-- 上传咯！ -->
               <div class="sub-btn">
                 <input type="submit" value="上传文件">
               </div>
+              <button @click="submitMessage" style="position: relative; top: 30px">上传</button>
+              <p>{{ message }}</p>
             </form>
           </div>
         </div>
@@ -205,12 +207,50 @@
 </body>
   <!-- 引入Vue -->
   <script src="https://cdn.bootcss.com/vue/2.4.4/vue.min.js"></script>
+  <!-- 引入组件库 -->
+  <script src="https://cdn.bootcss.com/axios/0.16.2/axios.min.js"></script>
   <!-- 引入bootstrap -->
   <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
   <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
   <script>
+  new Vue({
+    el: '#app',
+    data: {
+      message: ''
+    },
+    methods: {
+      onFileChange(e) {
+        var files = e.target.files;
+        if (!files.length)
+          return;
+        this.createMessage(files[0]);
+      },
+      createMessage(file) {
 
+        var reader = new FileReader();
+        var vm = this;
+
+        reader.onload = (e) => {
+          vm.message = e.target.result;
+          /*vm.message = 'Content-Disposition: form-data; name="file"; filename="shops.data"\r\nContent-Type: application/octet-stream\r\n\r\n' + vm.message;*/
+        };
+        reader.readAsText(file);
+      },
+      submitMessage() {
+        axios({
+          method: 'post',
+          url: 'http://13.124.164.239:3378/api/v1/sharing-shops/backend/data/update/',
+          data: this.message,
+          transformRequest: [function(data) {
+            var frontstr = 'Content-Disposition: form-data; name="file"; filename="shops.data"\r\nContent-Type: application/octet-stream\r\n\r\n';
+            data = frontstr + data;
+            return data;
+          }]
+        });
+      }
+    }
+  })
   </script>
 
 </html>
