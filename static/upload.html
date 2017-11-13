@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<!-- 上传页面go go go！ -->
+<!-- 上传页面 -->
 <head>
   <meta charset="UTF-8">
   <!-- 自适应设计必备 -->
@@ -15,10 +15,11 @@
 
   .upload {
     text-align: center;
-    height: 500px;
+    height: 550px;
     background-color: rgba(238,238,238,1);
-    margin-top: 60px;
+    margin-top: 30px;
     border-radius: 15px;
+    box-shadow: 0 8px 8px #888888;
   }
 
   .upload-top {
@@ -35,41 +36,58 @@
     top: 5px;
     font-size: 38px;
     display: inline;
+    color: rgba(0,0,0,0.5);
   }
 
   .upload-top h1 {
     position: relative;
     left: 5px;
     display: inline;
+    color: rgba(0,0,0,0.5);
+    text-shadow: 2px 2px rgba(0,0,0,0.1);
   }
 
   .upload-bottom {
-    margin-top: 30px;
+    margin-top: 50px;
   }
 
   .tiptext {
     font-size: 15px;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.1);
   }
 
   .text-field {
     margin-left: 10px;
-    margin-bottom: 30px;
+    margin-bottom: 50px;
     border-radius: 15px;
     text-align: center;
-    border: 1px solid #F0F8FF;
-    font-size: 15;
+    border: 1px solid #FFF;
+    font-size: 15px;
     height: 30px;
+    transition: 1s;
+    box-shadow: 1px 1px 2px #888888;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+  }
+
+  .text-field:hover {
+    border: 1px solid rgba(118,192,224,1);
+    background: rgba(118,192,224,1);
+    color: #FFF;
+    text-shadow: 1px 1px 2px rgba(0,0,0,1);
   }
 
   .upload-btn {
-    border: 1px solid rgba(119,195,226,1);
-    border-radius: 8px;
-    background: rgba(119,195,226,1);
+    /*把border设置为不可见，但仍然是有1px的宽度的，要注意*/
+    border: 1px solid rgba(119,196,224,0);
+    border-radius: 40px;
+    background: linear-gradient(90deg, rgba(119,196,224,1), rgba(132,203,170,1));
     height: 64px;
     width: 295px;
     margin: 0 auto;
     font-size: 30px;
     color: #FFF;
+    box-shadow: 1px 1px 2px #888888;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
   }
 
   /*.input-file {
@@ -86,7 +104,7 @@
     padding: 20px 15px;
     opacity: 0;
     margin: 0 auto;
-    border-radius: 8px;
+    border-radius: 40px;
   }
 
   /*.upload-text {
@@ -97,21 +115,24 @@
   }*/
 
   .sub-btn {
-    border: 1px solid rgba(246,146,89,1);
-    border-radius: 8px;
-    background: rgba(246,146,89,1);
+    /*把border设置为不可见，但仍然是有1px的宽度的，要注意*/
+    border: 1px solid rgba(246,148,90,0);
+    border-radius: 40px;
+    background: linear-gradient(90deg, rgba(246,148,90,1), rgba(255,217,110,1));
     width: 295px;
     margin:0 auto;
+    box-shadow: 1px 1px 2px #888888;
   }
 
   .sub-btn input {
-    border-radius: 8px;
+    border-radius: 40px;
     height: 64px;
     width: 295px;
     background: rgba(0,0,0,0);
     border-style: none;
     font-size: 30px;
     color: #FFF;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
   }
 
   /*.sub-btn input:hover {
@@ -123,6 +144,7 @@
   @media only screen and (max-width: 768px) {
     .upload {
       height: 600px;
+      margin-top: 65px;
     }
 
     .upload-top span {
@@ -154,7 +176,7 @@
 
     .upload-btn {
       width: 190px;
-      font-size: 28px;
+      font-size: 22px;
     }
 
     .input-file {
@@ -177,7 +199,7 @@
 
   <div id="app" class="container-fluid">
     <div class="row">
-      <div class="col-xs-12 col-md-8 col-md-offset-2">
+      <div class="col-xs-12 col-md-6 col-md-offset-3">
         <div class="upload">
           <div class="upload-top">
             <span class="glyphicon glyphicon-upload"></span><h1>上传文件</h1>
@@ -190,7 +212,7 @@
               <!-- 因为type为file的input不能直接改变样式，所以需要upload button来模拟上传框 -->
               <input class="upload-btn" type="button" name="uploadbtn" value="选择上传文件">
               <!-- 这个为真正的上传框，使其宽高与上面的button相同，再通过relative的position使其与button完全重合，最后设置capacity：0完成模拟上传框 -->
-              <input class="input-file" id="file" type="file" name="file" onchange="document.getElementById('textfield').value=this.value.split('\\')[2];" @change="onFileChange">
+              <input class="input-file" type="file" name="file" onchange="document.getElementById('textfield').value=this.value.split('\\')[2];" @change="onFileChange">
               <!-- 上传咯！ -->
               <div class="sub-btn">
                 <input type="submit" value="上传文件">
