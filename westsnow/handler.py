@@ -46,13 +46,19 @@ class ShopDataUpdateHandler(BaseReqHandler):
 
     def post(self):
         # 处理数据
-        logging.info(self.request.files)
-        if self.file_field_name != self.request.files['file'][0]['filename']:
-            thu.fin_400_bad_request(self, 'file field not exist.')
+        # logging.info(self.request.files)
+        res = self.check_file()
+        if not res:
             return
+
+        # if self.file_field_name != self.request.files['file'][0]['filename']:
+        #     thu.fin_400_bad_request(self, 'file field not exist.')
+        #     return
         file_body = self.request.files['file'][0]['body']
         file_body = to_str(file_body)
         data = self.convert_data(file_body)
+        if not data:
+            return
 
         # 入库处理
         ShopBulkData.create(data=file_body, converted_data=json.dumps(data))
@@ -65,18 +71,49 @@ class ShopDataUpdateHandler(BaseReqHandler):
         self.set_header("Access-Control-Allow-Headers", "authorization, x-user-auth, Content-Type")
         self.write(rv)
 
+    def check_file(self):
+        if 'file' not in self.request.files:
+            thu.fin_400_bad_request(self, 'file field format not correct.')
+            return
+
+        if not isinstance(self.request.files['file'], list):
+            thu.fin_400_bad_request(self, 'file field format not correct.')
+            return
+
+        logging.warn(self.request.files)
+
+        if 'filename' not in self.request.files['file'][0]:
+            thu.fin_400_bad_request(self, 'file field format not correct.')
+            return
+
+        logging.warn('hello')
+
+        if 'body' not in self.request.files['file'][0]:
+            thu.fin_400_bad_request(self, 'file field format not correct.')
+            return
+
+        return 'ok'
+
     def convert_data(self, data):
         """ 将文件数据转为结构化数据。"""
         rv = {}
-        for line in data.split('\n'):
-            parts = [part.strip() for part in line.split('|')]
-            code, klass, name, url = parts
-            if klass not in rv:
-                rv[klass] = []
-            _t = {
-                'code': code,
-                'name': name,
-                'url': url
-            }
-            rv[klass].append(_t)
+        try:
+            for line in data.split('\n'):
+                if not line:
+                    continue
+
+                parts = [part.strip() for part in line.split('|')]
+                code, klass, name, url = parts
+                if klass not in rv:
+                    rv[klass] = []
+                _t = {
+                    'code': code,
+                    'name': name,
+                    'url': url
+                }
+                rv[klass].append(_t)
+        except Exception as err:
+            logging.error(err)
+            thu.fin_403_forbidden(self, 'file format can not parse - %s' % line)
+            return
         return rv
