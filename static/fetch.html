@@ -98,27 +98,19 @@ body {
 
 .list-group-item {
   display: inline-block;
-  text-shadow: 1px 1px rgba(0,0,0,0.3);
-  /*margin-right: 2%;*/
+  text-shadow: 1px 1px rgba(0,0,0,0.1);
   margin-bottom: 25px;
-  /*border-radius: 30px;*/
   width: 20%;
   text-align: center;
-  /*border: none;*/
   box-shadow: 0px 1px rgba(0,0,0,0.1);
-  transition: 1s;
 }
 
 .list-group-item:first-child {
-  /*border-top-left-radius: 30px;
-  border-top-right-radius: 30px;*/
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
 
 .list-group-item:last-child {
-  /*border-bottom-right-radius: 30px;
-  border-bottom-left-radius: 30px;*/
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
   margin-bottom: 25px;
@@ -129,7 +121,6 @@ body {
   top: -2px;
   box-shadow: 1px 1px #888888;
   display: none;
-  transition: 1s;
 }
 
 .list-group-item:nth-child(5n+1) {
@@ -141,24 +132,20 @@ body {
   display: inline;
 }
 
-/*这里疑惑为什么需要!important才有效*/
 .list-group-item:hover {
-  background-color: rgba(91,192,222,1)!important;
-  color: #FFF!important;
-  text-shadow: 1px 1px rgba(0,0,0,0.1);
+  /*background-color: rgba(91,192,222,1)!important;
+  color: #FFF!important;*/
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
 }
 
 .list-group-item:hover span {
-  background-color: #FFF;
-  color: rgba(91,192,222,1);
-  text-shadow:1px 1px rgba(0,0,0,0.1);
+  /*background-color: #FFF;
+  color: rgba(91,192,222,1);*/
+  text-shadow: 1px 1px rgba(0,0,0,0.1);
 }
 
 @media only screen and (max-width: 768px) {
   .col-xs-12 {
-    /*padding-right: 25px;
-    padding-bottom: 20px;
-    padding-left: 25px;*/
     padding-left: 0;
     padding-right: 0;
   }
@@ -188,7 +175,6 @@ body {
     font-size: 25px;
   }
 
-  /*暂时取消*/
   .el-carousel__item img {
     height: 150px;
   }
