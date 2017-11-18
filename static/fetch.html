@@ -123,14 +123,14 @@ body {
   display: none;
 }
 
-.list-group-item:nth-child(5n+1) {
+/*.list-group-item:nth-child(5n+1) {
   text-align: left;
-}
+}*/
 
 /*配合上面的display:none，利用nth-child()实现特殊选择*/
-.list-group-item:nth-child(5n+1) span {
+/*.list-group-item:nth-child(5n+1) span {
   display: inline;
-}
+}*/
 
 .list-group-item:hover {
   /*background-color: rgba(91,192,222,1)!important;
@@ -141,6 +141,11 @@ body {
 .list-group-item:hover span {
   /*background-color: #FFF;
   color: rgba(91,192,222,1);*/
+  text-shadow: 1px 1px rgba(0,0,0,0.1);
+}
+
+.arr {
+  text-align: center;
   text-shadow: 1px 1px rgba(0,0,0,0.1);
 }
 
@@ -260,6 +265,8 @@ body {
                     </a>
                 </div>
               </div>
+
+              <p class="arr">© 2017 店铺集 - Sharing shop | 专注淘宝店铺分享, All Rights Reserved.</p>
 
             </div>
 
