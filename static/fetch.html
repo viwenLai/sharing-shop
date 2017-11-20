@@ -250,12 +250,6 @@ body {
                 <p>Sharing shop | 专注淘宝店铺分享</p>
             </div>
             <div class="data-bottom">
-              <el-carousel :interval="4000" type="card" height="200px">
-                <el-carousel-item v-for="item in carouselData.length" :key="item">
-                  <img class="img-responsive" :src="carouselData[item-1]">{{ item }}</img>
-                </el-carousel-item>
-              </el-carousel>
-
               <div v-for="(item, klass) in shopData" id="msg">
                 <h3 id="klassText">{{ klass }}</h3>
                 <div class="list-group">
