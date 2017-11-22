@@ -26,8 +26,9 @@ body {
   font-size: 15px;
   line-height: 1.7;
   font-family: 'Helvetica Neue',Helvetica,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',Arial,sans-serif;
-  background-color: #f7fafc !important;
-  background-image: url(https://static.kolast.com/eshop/img/b1.jpg);
+  /*background-color: #f7fafc !important;*/
+  /*background-image: url(https://static.kolast.com/eshop/img/b1.jpg);*/
+  background-color: rgba(0,0,0,1);
   overflow-x: hidden;
 }
 
@@ -39,23 +40,16 @@ body {
 
 .data-top {
 	overflow: hidden;
-	padding: 10px 25px 10px 25px;
+	padding: 60px 0 60px 0;
 	background: #caa8a8;
 	-moz-border-radius: 4px 4px 0 0; -webkit-border-radius: 4px 4px 0 0; border-radius: 4px 4px 0 0;
 	text-align: left;
+  position: relative;
 }
-.data-top h3 {
- 	padding-top: 16px;
-  margin-top: 0;
-  color: #555;
-  text-align: center;
-  font-size: 35px;
-  text-shadow: 1px 1px  2px rgba(0,0,0,0.1);
-}
-.data-top p {
-  color: #555;
-  text-align: center;
-  text-shadow: 1px 1px  2px rgba(0,0,0,0.1);
+
+.data-top img {
+  position: absolute;
+  top: -165px;
 }
 
 .data-bottom {
@@ -130,6 +124,33 @@ body {
 .arr {
   text-align: center;
   text-shadow: 1px 1px rgba(0,0,0,0.1);
+  clear: both;
+}
+
+.footer {
+  display: none;
+}
+
+.go-top {
+  position: fixed;
+  right: 6px;
+  bottom: 35px;
+  font-size: 25px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border: 2px solid rgba(255,255,255,1);
+  border-radius: 4px;
+  color: rgba(255,255,255,1);
+}
+
+.go-top span {
+  position: relative;
+  top: 3px;
+}
+
+.go-top:hover {
+  color: rgba(255,255,255,0.8);
+  border: 2px solid rgba(255,255,255,0.8);
 }
 
 @media only screen and (max-width: 768px) {
@@ -142,25 +163,22 @@ body {
     padding-top: 0;
   }
 
+  .data-top img {
+    width: 180%;
+    top: -85px;
+    left: -175px;
+  }
+
   .data-bottom {
     padding-top: 25px;
     padding-left: 10px;
     padding-right: 10px;
     background: #eee;
+    -moz-border-radius: 0 0 0 0; -webkit-border-radius: 0 0 0 0; border-radius: 0 0 0 0;
   }
 
   #msg {
     padding-top: 30px;
-  }
-
-  .data-top h3 {
-    font-size: 50px;
-    padding-top: 25px;
-    padding-bottom: 10px;
-  }
-
-  .data-top p {
-    font-size: 25px;
   }
 
   #klassText {
@@ -218,6 +236,36 @@ body {
     position:absolute;
     top: -30px;
   }*/
+
+  .arr {
+    padding-top: 120px;
+  }
+
+  .footer {
+    border: 1px solid #caa8a8;
+    background: #caa8a8;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    -moz-border-radius: 0 0 4px 4px; -webkit-border-radius: 0 0 4px 4px; border-radius: 0 0 4px 4px;
+    text-align: center;
+    font-size: 25px;
+    color: #fff;
+    display: block;
+  }
+
+  .go-top {
+    right: 20px;
+    color: rgba(0,0,0,0.5);
+    border: 2px solid rgba(0,0,0,0.5);
+    font-size: 30px;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .go-top:hover {
+    color: rgba(0,0,0,0.5);
+    border: 2px solid rgba(0,0,0,0.5);
+  }
 }
   </style>
 </head>
@@ -230,8 +278,9 @@ body {
           <div class="data-box">
 
             <div class="data-top">
-                <h3>店铺集</h3>
-                <p>Sharing shop | 专注淘宝店铺分享</p>
+                <!-- <h3>店铺集</h3>
+                <p>Sharing shop | 专注淘宝店铺分享</p> -->
+                <img src="logo.png" alt="">
             </div>
             <div class="data-bottom">
               <div v-for="(item, klass) in shopData" id="msg">
@@ -244,9 +293,18 @@ body {
                 </div>
               </div>
 
+              <!-- 返回顶部 -->
+              <div>
+                <a class="go-top" href="#">
+                  <span class="glyphicon glyphicon-arrow-up"></span>
+                </a>
+              </div>
+
               <p class="arr">© 2017 店铺集 - Sharing shop | 专注淘宝店铺分享, All Rights Reserved.</p>
 
             </div>
+
+            <div class="footer">your sharing shop</div>
 
           </div>
 
@@ -262,6 +320,7 @@ body {
   <!-- 引入组件库 -->
   <script src="https://cdn.bootcss.com/element-ui/1.4.6/index.js"></script>
   <script src="https://cdn.bootcss.com/axios/0.16.2/axios.min.js"></script>
+  <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
   <script>
     new Vue({
       el: '#app',
@@ -304,5 +363,31 @@ body {
         this.fetchItems()
       }
     })
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?176ec3d0c895779f44b24f4ffb917950";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+
+    window.onload = function() {
+      $(".go-top").hide();
+      $(function(){
+        $(window).scroll(function(){
+          if ($(window).scrollTop() > 100) {
+            $(".go-top").fadeIn(500);
+          } else {
+            $(".go-top").fadeOut(500);
+          }
+        });
+        $(".go-top").click(function(){
+          $('body,html').animate({
+            scrollTop: 0
+          },1000);
+          return false;
+        });
+      });
+    }
   </script>
 </html>
