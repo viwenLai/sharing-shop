@@ -133,24 +133,24 @@ body {
 
 .go-top {
   position: fixed;
-  right: 6px;
+  right: 18px;
   bottom: 35px;
   font-size: 25px;
-  padding-left: 10px;
-  padding-right: 10px;
-  border: 2px solid rgba(255,255,255,1);
-  border-radius: 4px;
   color: rgba(255,255,255,1);
-}
-
-.go-top span {
-  position: relative;
-  top: 3px;
 }
 
 .go-top:hover {
   color: rgba(255,255,255,0.8);
-  border: 2px solid rgba(255,255,255,0.8);
+}
+
+.go-top:focus {
+  color: rgba(255,255,255,1);
+}
+
+.email {
+  text-align: center;
+  text-shadow: 1px 1px rgba(0,0,0,0.1);
+  padding-top: 15px;
 }
 
 @media only screen and (max-width: 768px) {
@@ -256,15 +256,20 @@ body {
   .go-top {
     right: 20px;
     color: rgba(0,0,0,0.5);
-    border: 2px solid rgba(0,0,0,0.5);
-    font-size: 30px;
-    padding-left: 12px;
-    padding-right: 12px;
+    font-size: 40px;
   }
 
   .go-top:hover {
     color: rgba(0,0,0,0.5);
-    border: 2px solid rgba(0,0,0,0.5);
+  }
+
+  .go-top:focus {
+    color: rgba(0,0,0,0.5);
+  }
+
+  .email {
+    text-align: center;
+    text-shadow: 1px 1px rgba(0,0,0,0.1);
   }
 }
   </style>
@@ -286,7 +291,7 @@ body {
               <div v-for="(item, klass) in shopData" id="msg">
                 <h3 id="klassText">{{ klass }}</h3>
                 <div class="list-group">
-                    <a v-for="item in shopData[klass]" :href="item['url']" class="list-group-item" target="view_window">
+                    <a v-for="item in shopData[klass]" :href="item['url']" class="list-group-item" target="_blank">
                       <span class="label label-info">{{ item['code'] }}</span>
                       {{ item['name'] }}
                     </a>
@@ -296,11 +301,12 @@ body {
               <!-- 返回顶部 -->
               <div>
                 <a class="go-top" href="#">
-                  <span class="glyphicon glyphicon-arrow-up"></span>
+                  <span class="glyphicon glyphicon-menu-up"></span>
                 </a>
               </div>
 
               <p class="arr">© 2017 店铺集 - Sharing shop | 专注淘宝店铺分享, All Rights Reserved.</p>
+              <p class="email">投稿邮箱 — 0076club@gmail.com</p>
 
             </div>
 
